@@ -1,6 +1,6 @@
 # Pressure Vessel Thermal & Structural Analysis on MATLAB
 
-A multi-physics simulation of a thick-walled cylindrical pressure vessel, combining **Thermodynamics**, **Strength of Materials**, and **Fluid Mechanics** principles into one cohesive MATLAB project.
+A multi-physics simulation of a thick-walled cylindrical pressure vessel, combining **Thermodynamics**, **Mechanics of Materials**, and **Fluid Mechanics** principles into one cohesive MATLAB project.
 
 ---
 
