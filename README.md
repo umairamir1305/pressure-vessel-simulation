@@ -148,7 +148,7 @@ This helps identify the critical region of the vessel and determine whether yiel
 # Author
 
 Umair
-Mechanical Engineering — 4th Semester
+Mechanical Engineering 4th Semester
 National University of Sciences and Technology
 
 ---
