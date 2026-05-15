@@ -119,7 +119,7 @@ Safety Factor: SF(r) = σ_yield / σ_vm(r)
 ## Author
 
 UMAIR 
-B.E. Mechanical Engineering — 4th Semester  
+B.E. Mechanical Engineering 4th Semester  
 National University of Sciences & Technology
 
 ---
