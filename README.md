@@ -10,7 +10,7 @@ This project simulates a steel pressure vessel (as used in boilers, pipelines, a
 
 1. **How does temperature vary through the vessel wall?** (Heat conduction)
 2. **How do stresses distribute through the wall under pressure?** (Lamé equations)
-3. **Is the design safe — and what are its limits?** (Von Mises + Safety Factor)
+3. **Is the design safe and what are its limits?** (Von Mises + Safety Factor)
 
 ---
 
