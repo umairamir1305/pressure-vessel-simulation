@@ -1,131 +1,160 @@
-# Pressure Vessel Thermal & Structural Analysis on MATLAB
+# Pressure Vessel Thermal & Structural Analysis in MATLAB
 
-A multi-physics simulation of a thick-walled cylindrical pressure vessel, combining **Thermodynamics**, **Mechanics of Materials**, and **Fluid Mechanics** principles into one cohesive MATLAB project.
+This project studies the behavior of a thick-walled cylindrical pressure vessel using MATLAB.
+The aim was to combine concepts from heat transfer, strength of materials, and fluid/pressure systems into one engineering simulation.
 
----
+The model analyzes how temperature and stresses vary through the vessel wall and checks whether the design remains within safe operating limits.
 
-## Project Overview
-
-This project simulates a steel pressure vessel (as used in boilers, pipelines, and chemical reactors) and answers three engineering questions:
-
-1. **How does temperature vary through the vessel wall?** (Heat conduction)
-2. **How do stresses distribute through the wall under pressure?** (Lamé equations)
-3. **Is the design safe and what are its limits?** (Von Mises + Safety Factor)
+Typical applications include boilers, pressure pipelines, storage tanks, and chemical process vessels.
 
 ---
 
-## Scripts
+# Project Objectives
 
-| File | Topic | Physics |
-|------|-------|---------|
-| `script1_heat_conduction.m` | Radial temperature profile | Fourier's Law (cylindrical) |
-| `script2_stress_analysis.m` | Hoop & radial stress | Lamé equations |
-| `script3_safety_factor.m` | Von Mises safety factor | Failure theory |
-| `script4_parametric_study.m` | Thickness & pressure sweep | Combined |
-| `RUN_ALL.m` | Master runner | Runs all scripts |
+The project focuses on three main engineering problems:
+
+1. Determining the temperature distribution through the vessel wall due to heat conduction
+2. Calculating radial and hoop stresses caused by internal pressure
+3. Evaluating structural safety using the Von Mises failure criterion and factor of safety
 
 ---
 
-## How to Run
+# MATLAB Files
+
+| File Name                    | Purpose                                                |
+| ---------------------------- | ------------------------------------------------------ |
+| `script1_heat_conduction.m`  | Calculates radial temperature distribution             |
+| `script2_stress_analysis.m`  | Computes hoop and radial stresses using Lamé equations |
+| `script3_safety_factor.m`    | Calculates Von Mises stress and safety factor          |
+| `script4_parametric_study.m` | Studies effect of pressure and wall thickness          |
+| `RUN_ALL.m`                  | Runs all scripts together                              |
+
+---
+
+# Procedure
 
 1. Open MATLAB
-2. Navigate to this folder (`cd` or use the folder browser)
-3. Run `RUN_ALL.m` — all scripts execute in order and produce plots
+2. Set the project folder as the current directory
+3. Run `RUN_ALL.m`
 
-Or run each script individually for step-by-step results.
+All graphs and calculations will be generated automatically.
 
----
-
-## Vessel Parameters
-
-| Parameter | Value | Unit |
-|-----------|-------|------|
-| Inner radius | 100 | mm |
-| Outer radius | 150 | mm |
-| Wall thickness | 50 | mm |
-| Internal pressure | 10 | MPa |
-| Inner wall temperature | 300 | °C |
-| Outer wall temperature | 50 | °C |
-| Material | Steel | — |
-| Thermal conductivity (k) | 50 | W/m·K |
-| Yield strength | 250 | MPa |
+Individual scripts can also be executed separately for checking each analysis step.
 
 ---
 
-## Key Results
+# Vessel Specifications
 
-- **Maximum temperature** at inner surface: 300°C, dropping non-linearly to 50°C at outer surface
-- **Maximum hoop stress** at inner surface (as predicted by Lamé theory)
-- **Minimum safety factor** at inner surface — the critical failure location
-- **Parametric study** reveals the minimum safe wall thickness and maximum allowable pressure
-
----
-
-## Theory
-
-### 1. Heat Conduction (Cylindrical)
-Temperature distribution in a hollow cylinder with fixed boundary temperatures:
-
-```
-T(r) = T_inner - [Q / (2πkL)] × ln(r / r_i)
-
-where Q = 2πkL(T_i - T_o) / ln(r_o / r_i)
-```
-
-### 2. Lamé Equations (Thick-Walled Cylinder)
-For internal pressure only:
-
-```
-σ_hoop(r)   = A + B/r²     (tensile, max at inner surface)
-σ_radial(r) = A - B/r²     (compressive at inner surface)
-
-where:
-  A = p_i × r_i² / (r_o² - r_i²)
-  B = p_i × r_i² × r_o² / (r_o² - r_i²)
-```
-
-### 3. Von Mises Failure Criterion
-```
-σ_vm = √[ 0.5 × ((σ_h - σ_r)² + (σ_r - σ_a)² + (σ_a - σ_h)²) ]
-
-Safety Factor: SF(r) = σ_yield / σ_vm(r)
-```
+| Parameter              | Value | Unit  |
+| ---------------------- | ----- | ----- |
+| Inner radius           | 100   | mm    |
+| Outer radius           | 150   | mm    |
+| Wall thickness         | 50    | mm    |
+| Internal pressure      | 10    | MPa   |
+| Inner wall temperature | 300   | °C    |
+| Outer wall temperature | 50    | °C    |
+| Material               | Steel | —     |
+| Thermal conductivity   | 50    | W/m·K |
+| Yield strength         | 250   | MPa   |
 
 ---
 
-## Sample Output Plots
+# Theoretical Background
 
-**Script 1** — Temperature drops from 300°C to 50°C non-linearly across the 50 mm wall
+## 1. Radial Heat Conduction
 
-**Script 2** — Hoop stress decreases from maximum at inner surface outward; radial stress goes from −p_i to 0
+The temperature distribution through the cylindrical wall is calculated using Fourier’s law for steady-state radial conduction.
 
-**Script 3** — Safety factor is lowest at inner surface; Von Mises stress peaks there
+[
+T(r) = T_i - [ Q / (2πkL) ] ln(r / r_i)
+]
 
-**Script 4** — Thicker walls increase SF but reduce heat flux; higher pressure reduces SF non-linearly
+where,
 
----
+[
+Q = [ 2πkL(T_i - T_o) ] / ln(r_o / r_i)
+]
 
-## Skills Demonstrated
-
-- MATLAB programming (arrays, loops, plotting, annotations)
-- Applied thermodynamics — Fourier heat conduction
-- Applied mechanics — Lamé thick-cylinder theory
-- Failure analysis — Von Mises criterion and safety factors
-- Parametric design studies
-- Engineering judgment and result interpretation
+The temperature decreases non-linearly from the inner surface toward the outer surface.
 
 ---
 
-## Author
+## 2. Stress Distribution in Thick Cylinders
 
-UMAIR 
-B.E. Mechanical Engineering 4th Semester  
-National University of Sciences & Technology
+Stress variation through the wall is determined using Lamé equations for thick-walled pressure vessels.
+
+[
+σ_h = A + (B / r²)
+]
+
+[
+σ_h = A + (B / r²)
+]
+
+where,
+
+[
+A = (p_i r_i²) / (r_o² - r_i²)
+]
+
+[
+B = (p_i r_i² r_o²) / (r_o² - r_i²)
+]
+
+The hoop stress is maximum at the inner surface, while radial stress changes from compressive pressure at the inside to nearly zero at the outer surface.
 
 ---
 
-## References
+## 3. Von Mises Criterion
 
-1. Cengel & Boles — *Thermodynamics: An Engineering Approach*
-2. Shigley's — *Mechanical Engineering Design*
-3. Lame, G. — *Leçons sur la théorie mathématique de l'élasticité des corps solides* (1852)
+Equivalent stress is calculated using the Von Mises relation:
+
+[
+σ_vm = √{ 0.5 [ (σ_h - σ_r)² + (σ_r - σ_a)² + (σ_a - σ_h)² ] }
+]
+
+Factor of safety:
+
+[
+SF = σ_y / σ_vm
+]
+
+This helps identify the critical region of the vessel and determine whether yielding may occur.
+
+---
+
+# Results and Observations
+
+* Temperature decreases from 300°C at the inner wall to 50°C at the outer wall
+* Maximum hoop stress occurs at the inner radius
+* Radial stress is highest in compression near the inner wall and approaches zero outward
+* Von Mises stress is maximum at the inner surface
+* The minimum factor of safety occurs near the inner radius
+* Increasing wall thickness improves safety factor
+* Increasing internal pressure causes a significant rise in stresses
+
+---
+
+# Engineering Concepts Used
+
+* MATLAB programming and plotting
+* Steady-state heat conduction
+* Thick cylinder stress analysis
+* Failure theory and safety factor evaluation
+* Parametric analysis and engineering design interpretation
+
+---
+
+# Author
+
+Umair
+Mechanical Engineering — 4th Semester
+National University of Sciences and Technology
+
+---
+
+# References
+
+1. Thermodynamics: An Engineering Approach
+2. Shigley's Mechanical Engineering Design
+3. Gabriel Lamé — Theory of thick-walled cylinders
